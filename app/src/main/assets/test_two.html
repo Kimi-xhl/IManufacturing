@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="test_two.css">
+    <title>第二题</title>
+    <script src="./util.js"></script>
+    <script>
+        $(function (){
+            $(".cold").click(function(){
+                $(".one").show();
+                $("two").hide();
+                $(".four").show();
+            });
+            $(".warm").click(function(){
+                $(".two").show();
+                $(".three").show();
+                $(".one").hide();
+                $(".four").hide();
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="title">空调控制</div>
+    <div class="bg">
+        <div class="content_bg">
+            <div class="img_bg">
+                <img src="./images/snow.png" class="one">
+                <img src="./images/snow2.png" class="three" hidden>
+                <img src="./images/wind.png" class="two" hidden>
+                <img src="./images/wind2.png" class="four">
+            </div>
+            <button class="cold">冷风</button>
+            <button class="warm">暖风</button>
+            <button class="switch">
+                <img src="./images/switch.png">
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

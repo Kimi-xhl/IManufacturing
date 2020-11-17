@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./test_one.css">
+    <title>第一题</title>
+    <script src="./util.js"></script>
+    <script>
+        $(function (){
+            $(".close").click(function(){
+                $(".two").show();
+            });
+            $(".open").click(function(){
+                $(".two").hide();
+                $(".one").show();
+            });
+        })
+    </script>
+</head>
+
+<body>
+<div class="title">灯光控制</div>
+<div class="bg">
+        <div class="img_bg">
+            <img src="./images/open.png" class="one">
+            <img src="./images/close.png" class="two" hidden>
+        </div>
+    <button class="open">开启</button>
+    <button class="close">关闭</button>
+</div>
+</body>
+
+</html>

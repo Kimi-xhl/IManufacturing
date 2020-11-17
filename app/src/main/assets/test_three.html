@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>TableSorter</title>
+    <style type="text/css">
+body{font-size:12px;line-height:25px;}
+tr{height:25px;}
+th{font-size:14px;border-bottom:solid 1px #DDDDDD;background-color:#EEEEEE;border:solid 1px;}
+td{font-size:12px;text-align:center;border:solid 1px;}
+</style>
+
+</head>
+<body>
+
+<table border="0" id="tbl" style="border:solid 1px #DDDDDD;width:360px;" cellpadding="0" cellspacing="0">
+    <thead>
+    <tr>
+        <th id="th0">姓名</th>
+        <th id="th1" onclick = "tablesort('tbl',1)" >类型</th>
+        <th id="th2" onclick = "tablesort('tbl',2)" >薪资</th>
+        <th id="th3" onclick = "tablesort('tbl',3)" ></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>李某某</td>
+        <td>操作员</td>
+        <td>9000</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>王强</td>
+        <td>java程序员</td>
+        <td>16000</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>李克显</td>
+        <td>php程序员</td>
+        <td>12000</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>黄忠</td>
+        <td>前端</td>
+        <td>8000</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+var Sortcol=-1;
+var Sort_flg=[true,true,true,true];
+function tablesort(tableid,colidx){
+    var table=document.getElementById(tableid);
+    var table_tbody=table.getElementsByTagName("tbody")[0];
+    var table_tr=table_tbody.getElementsByTagName("tr");
+
+    Sortcol = colidx;
+    var tmp_tr_array=new Array();
+    for(var cnt=0;cnt<table_tr.length;cnt++){
+        tmp_tr_array.push(table_tr[cnt]);
+    }
+    tmp_tr_array.sort(sortfunc);
+
+    var fragment = document.createDocumentFragment();
+    for(var cnt=0;cnt<tmp_tr_array.length;cnt++){
+        fragment.appendChild(tmp_tr_array[cnt]);
+    }
+
+    table_tbody.appendChild(fragment);
+
+    setCSSforTH(colidx);
+}
+
+function setCSSforTH(colidx){
+    for(var cnt=0;cnt<4;cnt++){
+        document.getElementById("th"+cnt).style = "";
+    }
+
+    if(Sort_flg[colidx]){
+        Sort_flg[colidx]=false;
+        document.getElementById("th"+colidx).style = "background-image:url(./images/triangle2.png);background-repeat:no-repeat;background-position:right center;";
+    }else{
+        Sort_flg[colidx]=true;
+        document.getElementById("th"+colidx).style = "background-image:url(s2.jpg);background-repeat:no-repeat;background-position:right center;";
+    }
+}
+
+function sortfunc(a,b){
+    var value1 = a.getElementsByTagName("td")[Sortcol].innerHTML;
+    var value2 = b.getElementsByTagName("td")[Sortcol].innerHTML;
+
+    
+    if(Sort_flg[Sortcol]){
+        if(isNaN(value1)){
+            return value1.localeCompare(value2);
+        }else{
+            return Number(value1)-Number(value2);
+        }
+    }else{
+        if(isNaN(value1)){
+            return value2.localeCompare(value1);
+        }else{
+            return Number(value2)-Number(value1);
+        }
+    }
+}
+</script>
+</body>
+</html>
